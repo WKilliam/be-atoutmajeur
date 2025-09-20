@@ -16,15 +16,12 @@ public class OrdersEntity
     [Required]
     [StringLength(50)]
     [Column("order_number")]
-    public string OrderNumber { get; set; } = string.Empty;
+    public string OrderRef { get; set; } = string.Empty;
     
     [Required]
     [ForeignKey("User")]
     [Column("user_id")]
     public int UserId { get; set; }
-    
-    [Column("order_date")]
-    public DateTime OrderDate { get; set; } = DateTime.UtcNow;
     
     [Column("estimated_date")]
     public DateTime? EstimatedDate { get; set; }
