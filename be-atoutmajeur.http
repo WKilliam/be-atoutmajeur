@@ -4,3 +4,15 @@ GET {{be_atoutmajeur_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###
+
+POST {{be_atoutmajeur_HostAddress}}/auth/register
+Accept: application/json
+Content-Type: application/json
+
+{
+  "firstName": "string",
+  "lastName": "string",
+  "email": "string",
+  "password": "string",
+  "role": "string"
+}

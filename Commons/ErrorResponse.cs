@@ -18,5 +18,7 @@ public class ErrorResponse : IApiResponse
         Message = message;
         StatusCode = statusCode;
         Details = details;
+        StatusCode = statusCode;
+        Timestamp = DateTime.UtcNow;
     }
 }

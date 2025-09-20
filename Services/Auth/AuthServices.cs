@@ -79,7 +79,7 @@ public class AuthServices: IAuthService
             {
                 Role = user.Role.ToString(),
                 FirstName = user.FirstName,
-                LastName = user.LastName
+                LastName = user.LastName,
             };
 
             return new SuccessResponse<AuthResponseDto>(responseData, "Successful registration");

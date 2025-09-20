@@ -3,21 +3,25 @@
 public class CookieHandler
 {
     private readonly IHttpContextAccessor _httpContextAccessor;
+    private readonly IWebHostEnvironment _environment;
 
-    public CookieHandler(IHttpContextAccessor httpContextAccessor)
+    public CookieHandler(IHttpContextAccessor httpContextAccessor, IWebHostEnvironment environment)
     {
         _httpContextAccessor = httpContextAccessor;
+        _environment = environment;
     }
 
     public void SetAuthToken(string token)
     {
         var cookieOptions = new CookieOptions
         {
-            HttpOnly = true,
-            Secure = true,
-            SameSite = SameSiteMode.Strict,
-            Expires = DateTime.UtcNow.AddDays(7),
-            Path = "/"
+            HttpOnly = true, // ✅ Sécurité : pas accessible en JavaScript
+            Secure = !_environment.IsDevelopment(), // ✅ HTTPS seulement en production
+            SameSite = _environment.IsDevelopment() 
+                ? SameSiteMode.Lax  // ✅ Permissif en développement
+                : SameSiteMode.Strict, // ✅ Strict en production
+            Expires = DateTime.UtcNow.AddDays(7), // ✅ 7 jours d'expiration
+            Path = "/" // ✅ Disponible sur tout le site
         };
 
         _httpContextAccessor.HttpContext?.Response.Cookies.Append("authToken", token, cookieOptions);
@@ -30,7 +34,18 @@ public class CookieHandler
 
     public void RemoveAuthToken()
     {
-        _httpContextAccessor.HttpContext?.Response.Cookies.Delete("authToken");
+        var cookieOptions = new CookieOptions
+        {
+            HttpOnly = true,
+            Secure = !_environment.IsDevelopment(),
+            SameSite = _environment.IsDevelopment() 
+                ? SameSiteMode.Lax 
+                : SameSiteMode.Strict,
+            Path = "/",
+            Expires = DateTime.UtcNow.AddDays(-1) // ✅ Date passée pour supprimer
+        };
+
+        _httpContextAccessor.HttpContext?.Response.Cookies.Append("authToken", "", cookieOptions);
     }
 
     public bool HasAuthToken()

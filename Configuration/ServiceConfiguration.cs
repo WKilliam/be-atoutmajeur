@@ -6,6 +6,7 @@ using be_atoutmajeur.Data;
 using be_atoutmajeur.Models.Interfaces;
 using be_atoutmajeur.Services.Auth;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.CookiePolicy;
 
 namespace be_atoutmajeur.Configuration;
 
@@ -19,15 +20,29 @@ public static class ServiceConfiguration
         
         services.AddDbContext<AppDbContext>(options =>
             options.UseSqlite(configuration.GetConnectionString("DefaultConnection")));
+        
+        // CORS Configuration corrigée
         services.AddCors(options =>
         {
-            options.AddPolicy("AllowSwagger", policy =>
+            // Policy pour le développement - PERMET LES COOKIES
+            options.AddPolicy("Development", policy =>
             {
-                policy.AllowAnyOrigin()
+                policy.WithOrigins("http://localhost:3000", "http://localhost:5041", "https://localhost:7001")
                     .AllowAnyMethod()
-                    .AllowAnyHeader();
+                    .AllowAnyHeader()
+                    .AllowCredentials(); // ✅ ESSENTIEL pour les cookies
+            });
+            
+            // Policy pour la production
+            options.AddPolicy("Production", policy =>
+            {
+                policy.WithOrigins("https://votredomaine.com") // Remplacez par votre domaine
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials(); // ✅ ESSENTIEL pour les cookies
             });
         });
+
         // JWT Authentication
         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>
@@ -41,20 +56,32 @@ public static class ServiceConfiguration
                     ValidateLifetime = true,
                     ClockSkew = TimeSpan.Zero
                 };
+
+                // ✅ Permettre au JWT de lire les cookies
+                options.Events = new JwtBearerEvents
+                {
+                    OnMessageReceived = context =>
+                    {
+                        // Récupérer le token depuis le cookie si pas dans le header
+                        if (string.IsNullOrEmpty(context.Token))
+                        {
+                            context.Token = context.Request.Cookies["authToken"];
+                        }
+                        return Task.CompletedTask;
+                    }
+                };
             });
 
         services.AddAuthorization();
 
-        // Configuration des cookies (existante)
+        // Configuration des cookies simplifiée
         services.Configure<CookiePolicyOptions>(options =>
         {
-            options.CheckConsentNeeded = context => true;
-            options.MinimumSameSitePolicy = SameSiteMode.None;
-            options.HttpOnly = Microsoft.AspNetCore.CookiePolicy.HttpOnlyPolicy.Always;
-            options.Secure = CookieSecurePolicy.Always;
+            options.CheckConsentNeeded = context => false; // ✅ Désactivé pour l'auth
+            options.MinimumSameSitePolicy = SameSiteMode.Unspecified; // ✅ Laisse le contrôle au CookieHandler
         });
-       
-        
+
+        // HTTPS Redirection (seulement en production)
         services.AddHttpsRedirection(options =>
         {
             options.RedirectStatusCode = StatusCodes.Status307TemporaryRedirect;
@@ -74,7 +101,6 @@ public static class ServiceConfiguration
         services.AddScoped<ISecurityServices, SecurityCoreApi>();
         services.AddScoped<IAuthService, AuthServices>();
 
-
         return services;
     }
     
@@ -84,18 +110,22 @@ public static class ServiceConfiguration
         {
             app.UseSwagger();
             app.UseSwaggerUI();
+            // ✅ Pas de HTTPS redirection en développement
+            app.UseCors("Development"); // ✅ Policy qui permet les cookies
         }
         else
         {
             app.UseHsts();
+            app.UseHttpsRedirection();
+            app.UseCors("Production"); // ✅ Policy production avec credentials
         }
         
-        app.UseHttpsRedirection();
+        // ✅ Ordre correct du pipeline
         app.UseCookiePolicy();
-        app.UseCors("AllowSwagger"); 
         app.UseAuthentication();
         app.UseAuthorization();
         app.MapControllers();
+        
         return app;
     }
 }

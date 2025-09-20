@@ -5,7 +5,9 @@ E:\Workspace\test-technique\be-atoutmajeur\bin\Debug\net8.0\be-atoutmajeur.deps.
 E:\Workspace\test-technique\be-atoutmajeur\bin\Debug\net8.0\be-atoutmajeur.runtimeconfig.json
 E:\Workspace\test-technique\be-atoutmajeur\bin\Debug\net8.0\be-atoutmajeur.dll
 E:\Workspace\test-technique\be-atoutmajeur\bin\Debug\net8.0\be-atoutmajeur.pdb
+E:\Workspace\test-technique\be-atoutmajeur\bin\Debug\net8.0\BCrypt.Net-Next.dll
 E:\Workspace\test-technique\be-atoutmajeur\bin\Debug\net8.0\Humanizer.dll
+E:\Workspace\test-technique\be-atoutmajeur\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 E:\Workspace\test-technique\be-atoutmajeur\bin\Debug\net8.0\Microsoft.AspNetCore.OpenApi.dll
 E:\Workspace\test-technique\be-atoutmajeur\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
 E:\Workspace\test-technique\be-atoutmajeur\bin\Debug\net8.0\Microsoft.Build.Locator.dll
@@ -31,6 +33,12 @@ E:\Workspace\test-technique\be-atoutmajeur\bin\Debug\net8.0\Microsoft.Extensions
 E:\Workspace\test-technique\be-atoutmajeur\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
 E:\Workspace\test-technique\be-atoutmajeur\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
 E:\Workspace\test-technique\be-atoutmajeur\bin\Debug\net8.0\Microsoft.Extensions.Primitives.dll
+E:\Workspace\test-technique\be-atoutmajeur\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+E:\Workspace\test-technique\be-atoutmajeur\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+E:\Workspace\test-technique\be-atoutmajeur\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+E:\Workspace\test-technique\be-atoutmajeur\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+E:\Workspace\test-technique\be-atoutmajeur\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+E:\Workspace\test-technique\be-atoutmajeur\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
 E:\Workspace\test-technique\be-atoutmajeur\bin\Debug\net8.0\Microsoft.OpenApi.dll
 E:\Workspace\test-technique\be-atoutmajeur\bin\Debug\net8.0\Mono.TextTemplating.dll
 E:\Workspace\test-technique\be-atoutmajeur\bin\Debug\net8.0\SQLitePCLRaw.batteries_v2.dll
@@ -46,6 +54,7 @@ E:\Workspace\test-technique\be-atoutmajeur\bin\Debug\net8.0\System.Composition.H
 E:\Workspace\test-technique\be-atoutmajeur\bin\Debug\net8.0\System.Composition.Runtime.dll
 E:\Workspace\test-technique\be-atoutmajeur\bin\Debug\net8.0\System.Composition.TypedParts.dll
 E:\Workspace\test-technique\be-atoutmajeur\bin\Debug\net8.0\System.Diagnostics.DiagnosticSource.dll
+E:\Workspace\test-technique\be-atoutmajeur\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
 E:\Workspace\test-technique\be-atoutmajeur\bin\Debug\net8.0\System.IO.Pipelines.dll
 E:\Workspace\test-technique\be-atoutmajeur\bin\Debug\net8.0\System.Text.Encodings.Web.dll
 E:\Workspace\test-technique\be-atoutmajeur\bin\Debug\net8.0\System.Text.Json.dll
@@ -143,6 +152,7 @@ E:\Workspace\test-technique\be-atoutmajeur\obj\Debug\net8.0\be-atoutmajeur.Assem
 E:\Workspace\test-technique\be-atoutmajeur\obj\Debug\net8.0\be-atoutmajeur.csproj.CoreCompileInputs.cache
 E:\Workspace\test-technique\be-atoutmajeur\obj\Debug\net8.0\be-atoutmajeur.MvcApplicationPartsAssemblyInfo.cs
 E:\Workspace\test-technique\be-atoutmajeur\obj\Debug\net8.0\be-atoutmajeur.MvcApplicationPartsAssemblyInfo.cache
+E:\Workspace\test-technique\be-atoutmajeur\obj\Debug\net8.0\be-atoutmajeur.sourcelink.json
 E:\Workspace\test-technique\be-atoutmajeur\obj\Debug\net8.0\staticwebassets.build.json
 E:\Workspace\test-technique\be-atoutmajeur\obj\Debug\net8.0\staticwebassets.development.json
 E:\Workspace\test-technique\be-atoutmajeur\obj\Debug\net8.0\staticwebassets\msbuild.be-atoutmajeur.Microsoft.AspNetCore.StaticWebAssets.props
@@ -157,12 +167,3 @@ E:\Workspace\test-technique\be-atoutmajeur\obj\Debug\net8.0\refint\be-atoutmajeu
 E:\Workspace\test-technique\be-atoutmajeur\obj\Debug\net8.0\be-atoutmajeur.pdb
 E:\Workspace\test-technique\be-atoutmajeur\obj\Debug\net8.0\be-atoutmajeur.genruntimeconfig.cache
 E:\Workspace\test-technique\be-atoutmajeur\obj\Debug\net8.0\ref\be-atoutmajeur.dll
-E:\Workspace\test-technique\be-atoutmajeur\bin\Debug\net8.0\BCrypt.Net-Next.dll
-E:\Workspace\test-technique\be-atoutmajeur\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
-E:\Workspace\test-technique\be-atoutmajeur\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
-E:\Workspace\test-technique\be-atoutmajeur\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
-E:\Workspace\test-technique\be-atoutmajeur\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
-E:\Workspace\test-technique\be-atoutmajeur\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
-E:\Workspace\test-technique\be-atoutmajeur\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
-E:\Workspace\test-technique\be-atoutmajeur\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
-E:\Workspace\test-technique\be-atoutmajeur\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
