@@ -27,7 +27,7 @@ public static class ServiceConfiguration
             // Policy pour le développement - PERMET LES COOKIES
             options.AddPolicy("Development", policy =>
             {
-                policy.WithOrigins("http://localhost:3000", "http://localhost:5041", "https://localhost:7001")
+                policy.WithOrigins("http://localhost:3000", "http://localhost:5041", "https://localhost:7001","http://localhost:4200")
                     .AllowAnyMethod()
                     .AllowAnyHeader()
                     .AllowCredentials(); // ✅ ESSENTIEL pour les cookies

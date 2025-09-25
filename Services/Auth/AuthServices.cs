@@ -59,14 +59,17 @@ public class AuthServices: IAuthService
         {
             if (await _context.Users.AnyAsync(u => u.Email == request.Email))
                 return new ErrorResponse("Email already used", 400);
-
+            if (!Enum.TryParse<Roles>(request.Role, true, out var role))
+            {
+                role = Roles.User;
+            }
             var user = new UserEntity
             {
                 FirstName = request.FirstName,
                 LastName = request.LastName,
                 Email = request.Email,
                 PasswordHash = _securityService.HashPassword(request.Password),
-                Role = Roles.User,
+                Role = role,
             };
 
             _context.Users.Add(user);

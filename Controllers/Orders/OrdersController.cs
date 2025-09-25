@@ -78,8 +78,21 @@ public class OrdersController : ControllerBase
     public async Task<IActionResult> GetOrderHistory()
     {
         var currentUserId = User.GetUserId();
-        var userRole = User.GetUserRole(); // Pour détecter si admin
+        var userRole = User.GetUserRole();
         var result = await _ordersService.HistoriqueOrders(currentUserId, userRole);
+        return StatusCode(result.StatusCode, result);
+    }
+    
+    [HttpPost("filter/")]
+    [ProducesResponseType(typeof(object), 200)]
+    [ProducesResponseType(400)]
+    [ProducesResponseType(401)]
+    [ProducesResponseType(403)]
+    public async Task<IActionResult> FilterOrders([FromBody] OrdersFilterRequestDto request)
+    {
+        var currentUserId = User.GetUserId();
+        var userRole = User.GetUserRole();
+        var result = await _ordersService.FilterOrders(request, currentUserId, userRole);
         return StatusCode(result.StatusCode, result);
     }
 }
